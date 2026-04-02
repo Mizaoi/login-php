@@ -2,7 +2,6 @@
 // =============================================
 // FILE: register.php
 // Fungsi: Halaman pendaftaran akun baru
-// Gaya: Terinspirasi dari Portal Admin Kebersihan
 // =============================================
 
 session_start();
@@ -11,7 +10,7 @@ include "koneksi.php";
 $pesan       = "";
 $jenis_pesan = ""; // "sukses" atau "error"
 
-// ---- PROSES REGISTER ----
+// ---- REGISTER NJIR ----
 if (isset($_POST['btn_register'])) {
 
     $username = trim($_POST['username']);
@@ -19,7 +18,7 @@ if (isset($_POST['btn_register'])) {
     $konfirm  = trim($_POST['konfirmasi']);
     $role     = $_POST['role'];  // 'admin' atau 'mahasiswa'
 
-    // --- Validasi ---
+    // --- KONFIRMASI ---
     if (empty($username) || empty($password) || empty($konfirm)) {
         $pesan       = "Semua field wajib diisi!";
         $jenis_pesan = "error";
@@ -37,7 +36,6 @@ if (isset($_POST['btn_register'])) {
         $jenis_pesan = "error";
 
     } else {
-        // Cek apakah username sudah dipakai
         $cek   = mysqli_query($koneksi, "SELECT * FROM tb_login WHERE username = '$username'");
         $exist = mysqli_num_rows($cek);
 
@@ -45,7 +43,6 @@ if (isset($_POST['btn_register'])) {
             $pesan       = "Username '$username' sudah digunakan. Pilih username lain!";
             $jenis_pesan = "error";
         } else {
-            // Simpan ke database
             $password_hash = MD5($password);
 
             $query  = "INSERT INTO tb_login (username, password, role) 
@@ -81,13 +78,13 @@ if (isset($_POST['btn_register'])) {
             padding: 20px;
         }
 
-        /* Container utama */
+        /* Container */
         .register-container {
             width: 100%;
             max-width: 460px;
         }
 
-        /* Card register */
+        /* Card */
         .register-card {
             background: white;
             border-radius: 20px;
@@ -101,7 +98,7 @@ if (isset($_POST['btn_register'])) {
             transform: translateY(-5px);
         }
 
-        /* Header dengan gradien */
+        /* gradien */
         .card-header {
             background: linear-gradient(135deg, #2c7a4d 0%, #1a5f3a 100%);
             padding: 32px 28px;
@@ -133,12 +130,12 @@ if (isset($_POST['btn_register'])) {
             margin-top: 5px;
         }
 
-        /* Body form */
+        /* Body */
         .card-body {
             padding: 32px 32px 28px;
         }
 
-        /* Form group styling */
+        /* styling */
         .form-group {
             margin-bottom: 20px;
         }
@@ -195,7 +192,7 @@ if (isset($_POST['btn_register'])) {
             box-shadow: 0 0 0 3px rgba(44, 122, 77, 0.1);
         }
 
-        /* Hint text */
+        /* Hint */
         .hint {
             font-size: 11px;
             color: #94a3b8;
@@ -203,7 +200,7 @@ if (isset($_POST['btn_register'])) {
             margin-left: 5px;
         }
 
-        /* Pesan notifikasi */
+        /* notifikasi */
         .alert {
             padding: 14px 16px;
             border-radius: 12px;
@@ -226,7 +223,7 @@ if (isset($_POST['btn_register'])) {
             color: #991b1b;
         }
 
-        /* Tombol register */
+        /* Tombol */
         .btn-register {
             width: 100%;
             padding: 14px;
@@ -294,7 +291,7 @@ if (isset($_POST['btn_register'])) {
             color: #2c7a4d;
         }
 
-        /* Icon placeholder */
+        /* Icon */
         .icon-user:before { content: "👤"; }
         .icon-lock:before { content: "🔒"; }
         .icon-check:before { content: "✓"; }
@@ -318,8 +315,7 @@ if (isset($_POST['btn_register'])) {
 
 <div class="register-container">
     <div class="register-card">
-        
-        <!-- Header dengan gaya Portal Kebersihan -->
+       
         <div class="card-header">
             <div class="icon-logo">🌿</div>
             <h2>Daftar Akun Baru</h2>
@@ -337,7 +333,7 @@ if (isset($_POST['btn_register'])) {
                 </div>
             <?php endif; ?>
 
-            <!-- Form Register -->
+            <!-- Form -->
             <form method="POST" action="">
 
                 <div class="form-group">
@@ -383,7 +379,7 @@ if (isset($_POST['btn_register'])) {
                 </div>
 
                 <button type="submit" name="btn_register" class="btn-register">
-                    🌿 Daftar Sekarang
+                    🌿 Daftar Sekarang anjay
                 </button>
 
             </form>
